@@ -1,11 +1,18 @@
 <template>
   <div>
-    <h1>CancerFIT</h1>
+    <h1>Header</h1>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'IndexPage'
+  data() {
+    return {
+      
+    }
+  }
 }
 </script>
+
+<style>
+</style>
