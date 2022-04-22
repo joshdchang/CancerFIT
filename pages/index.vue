@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <h1>CancerFIT</h1>
+  <div class="main min-h-screen"> 
+    <div></div>
   </div>
 </template>
 
@@ -9,3 +9,9 @@ export default {
   name: 'IndexPage'
 }
 </script>
+
+<style scoped>
+.main {
+  background: #4fc3f7;
+}
+</style>
