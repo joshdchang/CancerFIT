@@ -1,0 +1,26 @@
+<!--VUE-->
+<template> {
+  <div> (
+    class =
+      main
+      min-h-screen
+  ) {
+    <div> {
+      
+    }
+  }
+}
+<script> {
+  js-
+  export default {
+    name: 'IndexPage'
+  }
+  -js
+}
+<style> (scoped) {
+  css-
+  .main {
+    background: #b3e5fc;
+  }
+  -css
+}

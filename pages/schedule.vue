@@ -1,39 +1,32 @@
 <template>
   <div class="grid grid-cols-1 lg:grid-cols-2">
     <div>
-      <TheCard nospacer="true">
-        <img class="rounded-xl w-full" src="https://www.cancerfit-ebe.com/uploads/1/0/5/4/10549706/background-images/1161573324.jpg">
-        <div class="sm:p-10 p-6 cf-card-content">
-          <WYSIWYG>
-            <img class="mx-auto" src="logo.jpg">
-            <hr>
-            <h1>{{ title }}</h1>
-            <p> {{ description }}</p>
-          </WYSIWYG>
-          <div>
-            <PillButton to="/about" theme="light" class="mb-3" w="w-80">More About Us</PillButton>
-            <PillButton to="/resources" w="w-80">Participant Resources</PillButton>
-          </div>
+      <TheCard>
+        <WYSIWYG>
+          <h1>Upcoming Classes</h1>
+          <p>Just bring sneakers and get ready to workout with us!</p>
+        </WYSIWYG>
+        <div>
+          <ScheduleItem v-for="upcoming of schedule" :date="upcoming.date"></ScheduleItem>
         </div>
       </TheCard>
     </div>
     <div>
       <TheCard>
         <WYSIWYG>
-          <h1>Upcoming Classes</h1>
+          <p>PCC Patients must RSVP by calling Integrative Health at 212-731-5806</p>
+          <p>PCC medical clearance is required. PCC will obtain clearance from your doctor on your behalf.</p>
+          <p>All instructors and patients must be fully vaccinated to participate</p>
         </WYSIWYG>
-        <div>
-          <ScheduleItem v-for="upcoming of schedule" :date="upcoming.date"></ScheduleItem>
-        </div>
-        <PillButton to="/schedule" w="w-80">See Full Schedule</PillButton>
       </TheCard>
       <TheCard>
         <WYSIWYG>
-          <h1>Participant Login</h1>
-          <input type="password" name="password" placeholder="Password">
-          <NuxtLink to="/contact">Forgot the password? Contact us.</NuxtLink>
+          <h1>Columbia University Irving Medical Center</h1>
+          <hr>
+          <h1>NYU Langone Health Perlmutter Cancer Center*</h1>
+          <p>*Must currently be under the care of an NYU Oncologist</p>
+          <p>*Medical Clearance required prior to class</p>
         </WYSIWYG>
-        <PillButton w="w-80">Log In</PillButton>
       </TheCard>
     </div>
   </div>
@@ -41,9 +34,6 @@
 
 <script>
   export default {
-    mounted() {
-
-    },
     data() {
       return {
         title: "Complimentary Fitness Classes for Cancer Patients and Survivors ",
@@ -57,10 +47,18 @@
           },
           {
             date: "Wed, Apr 13th at 8:30 am"
+          },
+          {
+            date: "Wed, Apr 20th at 8:30 am"
+          },
+          {
+            date: "Wed, Apr 27th at 8:30 am"
+          },
+          {
+            date: "Wed, May 3rd at 8:30 am"
           }
         ]
       }
-    },
-    name: "IndexPage"
+    }
   }
 </script>
