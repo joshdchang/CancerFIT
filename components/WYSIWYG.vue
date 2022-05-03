@@ -34,12 +34,12 @@
         @apply sm:mr-8 xl:mr-8 w-48 xl:w-40 lg:w-48 sm:w-40 max-w-full lg:float-none xl:float-left sm:float-left;
     }
     .cf-wysiwyg hr {
-        @apply mt-8 sm:mt-10 mb-8 sm:mb-14;
+        @apply mt-8 sm:mt-11 mb-8 sm:mb-11;
     }
     .cf-wysiwyg div {
         @apply mt-10 sm:mt-12;
     }
-    .cf-wysiwyg input {
+    .cf-wysiwyg input, .cf-wysiwyg textarea {
         @apply mt-3 sm:mt-4;
     }
 
@@ -52,6 +52,9 @@
     }
     .cf-wysiwyg > :last-child {
         margin-bottom: 0 !important;
+    }
+    .cf-wysiwyg .cf-m-0 {
+        margin: 0;
     }
 </style>
 <script>

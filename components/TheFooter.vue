@@ -43,7 +43,7 @@
           instagram: "https://www.instagram.com/cancerfit/?hl=en",
           twitter: "https://twitter.com/cancerfitinc",
         },
-      };
+      }
     },
-  };
+  }
 </script>

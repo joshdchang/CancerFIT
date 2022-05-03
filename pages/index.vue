@@ -2,13 +2,13 @@
   <div class="grid grid-cols-1 lg:grid-cols-2">
     <div>
       <TheCard nospacer="true">
-        <img class="rounded-xl w-full" src="https://www.cancerfit-ebe.com/uploads/1/0/5/4/10549706/background-images/1161573324.jpg">
+        <TheImage v-if="home.banner_type === 'image'" class="rounded-xl w-full" :asset="home.banner" />
+        <YoutubeVideo v-if="home.banner_type === 'video'" :src="home.youtube_link"></YoutubeVideo>
         <div class="sm:p-10 p-6 cf-card-content">
           <WYSIWYG>
-            <img class="mx-auto" src="logo.jpg">
+            <TheImage class="mx-auto" :asset="home.logo" />
             <hr>
-            <h1>{{ title }}</h1>
-            <p> {{ description }}</p>
+            <span v-html="home.content"></span>
           </WYSIWYG>
           <div>
             <PillButton to="/about" theme="light" class="mb-3" w="w-80">More About Us</PillButton>
@@ -19,21 +19,21 @@
     </div>
     <div>
       <TheCard>
-        <WYSIWYG>
-          <h1>Upcoming Classes</h1>
-        </WYSIWYG>
+        <WYSIWYG :content="home.title"></WYSIWYG>
         <div>
-          <ScheduleItem v-for="upcoming of schedule" :date="upcoming.date"></ScheduleItem>
+          <ScheduleItem v-for="upcoming of classes.slice(0, home.classes)" :upcoming="upcoming"></ScheduleItem>
         </div>
         <PillButton to="/schedule" w="w-80">See Full Schedule</PillButton>
       </TheCard>
-      <TheCard>
+      <TheCard v-if="resources.password_protected && (!$getCookie('pw') || $getCookie('pw') !== resources.password)">
         <WYSIWYG>
           <h1>Participant Login</h1>
-          <input type="password" name="password" placeholder="Password">
-          <NuxtLink to="/contact">Forgot the password? Contact us.</NuxtLink>
+          <input type="password" name="password" placeholder="Password" v-model="pwInput">
+          <NuxtLink to="/contact" v-if="incorrect">Forgot the password? Contact us.</NuxtLink>
         </WYSIWYG>
-        <PillButton w="w-80">Log In</PillButton>
+        <span @click="login()">
+          <PillButton w="w-80">Log In</PillButton>
+        </span>
       </TheCard>
     </div>
   </div>
@@ -41,26 +41,42 @@
 
 <script>
   export default {
-    mounted() {
-
+    async fetch() {
+      this.home = await this.$api('Home')
+      this.classes = await this.$api('Classes')
+      this.classes.sort(function (a, b) {
+        return new Date(a.date_and_time) - new Date(b.date_and_time)
+      })
+      for (let i = 0; i < this.classes.length; i++) {
+        let single = this.classes[i]
+        if (new Date().getTime() - 1000 * 60 * 60 > new Date(single.date_and_time).getTime()) {
+          this.classes.shift()
+          i--
+        }
+      }
+      this.resources = await this.$api('Resources')
     },
     data() {
       return {
-        title: "Complimentary Fitness Classes for Cancer Patients and Survivors ",
-        description: "The primary purpose of CancerFIT is to provide cancer patients with the benefits of exercise and physical activity. CancerFIT also serves as an organic support group by bringing together patients who have similar experiences and allowing them to support one another.",
-        schedule: [
-          {
-            date: "Wed, Mar 30th at 8:30 am"
-          },
-          {
-            date: "Wed, Apr 6th at 8:30 am"
-          },
-          {
-            date: "Wed, Apr 13th at 8:30 am"
-          }
-        ]
+        home: {},
+        classes: [],
+        resources: {},
+        pwCookie: this.$getCookie('pw'),
+        pwInput: '',
+        incorrect: false
       }
     },
-    name: "IndexPage"
+    methods: {
+      login: function () {
+        console.log(this.pwInput)
+        if (this.pwInput && this.resources.password && this.pwInput === this.resources.password) {
+          this.$setCookie('pw', this.pwInput, 365)
+          this.pwCookie = this.pwInput
+          this.$router.push('/resources')
+        } else if (this.pwInput) {
+          this.incorrect = true
+        }
+      }
+    }
   }
 </script>

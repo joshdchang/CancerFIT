@@ -1,12 +1,24 @@
 <template>
   <div class="text-center w-full">
-    <NuxtLink :to="to ? to : ''" class="max-w-full">
+    <a target="_blank" v-if="href" :href="href" class="max-w-full">
+      <button
+        class="max-w-full sm:py-2 px-5 py-1 text-base font-medium leading-6 whitespace-no-wrap rounded-full shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+        :class="theme + ' ' + w">
+        <slot />
+      </button>
+    </a>
+    <NuxtLink v-else-if="to" :to="to" class="max-w-full">
       <button
         class="max-w-full sm:py-2 px-5 py-1 text-base font-medium leading-6 whitespace-no-wrap rounded-full shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
         :class="theme + ' ' + w">
         <slot />
       </button>
     </NuxtLink>
+    <button v-else
+      class="max-w-full sm:py-2 px-5 py-1 text-base font-medium leading-6 whitespace-no-wrap rounded-full shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+      :class="theme + ' ' + w">
+      <slot />
+    </button>
   </div>
 </template>
 <style scoped>
@@ -36,6 +48,6 @@
 </style>
 <script>
   export default {
-    props: ["theme", "to", "w"],
+    props: ["theme", "to", "href", "w"],
   };
 </script>
