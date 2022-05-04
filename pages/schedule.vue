@@ -11,6 +11,9 @@
     <div>
       <TheCard>
         <WYSIWYG :content="schedule.disclaimer"></WYSIWYG>
+        <a class="my-2" :href="'https://cancerfit.up.railway.app/assets/' + schedule.forms" target="_blank">
+          <PillButton w="w-80">Download Forms</PillButton>
+        </a>
       </TheCard>
       <TheCard>
         <WYSIWYG :content="schedule.partners"></WYSIWYG>

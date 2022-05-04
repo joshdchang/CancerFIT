@@ -3,7 +3,7 @@
     <div class="container flex flex-col items-center px-8 py-8 mx-auto max-w-7xl sm:flex-row">
       <NuxtLink to="/" class="text-xl font-black leading-none text-white select-none logo">CancerFIT</NuxtLink>
       <p class="mt-4 text-sm sm:ml-4 sm:pl-4 sm:border-l sm:border-gray-200 sm:mt-0" style="color: #b3e5fc;">Copyright © {{ new
-        Date().getFullYear() }} CancerFIT</p>
+        Date().getFullYear() }} CancerFIT • <a class="underline" href="https://cancerfit.up.railway.app/admin/" target="_blank">Admin Login</a></p>
       <span class="inline-flex justify-center mt-4 space-x-5 sm:ml-auto sm:mt-0 sm:justify-start">
         <a :href="settings.facebook_link" v-if="settings.facebook" class="text-white hover:text-gray-300" target="_blank">
           <span class="sr-only">Facebook</span>

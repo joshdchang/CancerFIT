@@ -3,7 +3,7 @@
     <TheImage :asset="article.featured_image" class="w-full rounded-md sm:rounded-lg mb-5 sm:mb-7"></TheImage>
     <WYSIWYG>
       <h2>{{ article.title }}</h2>
-      <p class="font-bold cf-m-0">By {{ article.author }}</p>
+      <p class="font-bold cf-m-0"><span v-if="!article.external">By </span>{{ article.author }}</p>
       <p v-if="article.publish_date">{{ new Date(article.publish_date).toLocaleDateString('en-US', { month: 'long', day:
         'numeric',
         year: 'numeric' }) }}</p>
@@ -11,7 +11,10 @@
         }) }}
       </p>
     </WYSIWYG>
-    <span class="mt-5 sm:mt-7" @click="$router.push('/news/' + article.id)">
+    <a v-if="article.external" class="mt-5 sm:mt-7" :href="article.link" target="_blank" >
+      <PillButton theme="light" w="w-80">Open in New Tab</PillButton>
+    </a>
+    <span v-else class="mt-5 sm:mt-7" @click="$router.push('/news/' + article.id)">
       <PillButton theme="light" w="w-80">Read Article</PillButton>
     </span>
   </div>
