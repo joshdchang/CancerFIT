@@ -24,6 +24,11 @@
         },
         data: () => ({
             donate: {}
-        })
+        }),
+        head() {
+            return {
+                title: 'Donate - CancerFIT'
+            }
+        }
     }
 </script>

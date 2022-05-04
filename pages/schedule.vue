@@ -40,5 +40,10 @@
       schedule: {},
       classes: []
     }),
+    head() {
+      return {
+        title: 'Schedule - CancerFIT'
+      }
+    }
   }
 </script>

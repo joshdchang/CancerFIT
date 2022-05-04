@@ -5,7 +5,7 @@
       <p class="mt-4 text-sm sm:ml-4 sm:pl-4 sm:border-l sm:border-gray-200 sm:mt-0" style="color: #b3e5fc;">Copyright © {{ new
         Date().getFullYear() }} CancerFIT</p>
       <span class="inline-flex justify-center mt-4 space-x-5 sm:ml-auto sm:mt-0 sm:justify-start">
-        <a :href="social.facebook" v-if="social.facebook" class="text-white hover:text-gray-300" target="_blank">
+        <a :href="settings.facebook_link" v-if="settings.facebook" class="text-white hover:text-gray-300" target="_blank">
           <span class="sr-only">Facebook</span>
           <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
             <path
@@ -14,7 +14,7 @@
               clip-rule="evenodd" />
           </svg>
         </a>
-        <a :href="social.instagram" v-if="social.instagram" class="text-white hover:text-gray-300" target="_blank">
+        <a :href="settings.instagram_link" v-if="settings.instagram" class="text-white hover:text-gray-300" target="_blank">
           <span class="sr-only">Instagram</span>
           <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
             <path
@@ -23,7 +23,7 @@
               clip-rule="evenodd" />
           </svg>
         </a>
-        <a :href="social.twitter" v-if="social.twitter" class="text-white hover:text-gray-300" target="_blank">
+        <a :href="settings.twitter_link" v-if="settings.twitter" class="text-white hover:text-gray-300" target="_blank">
           <span class="sr-only">Twitter</span>
           <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
             <path
@@ -36,14 +36,11 @@
 </template>
 <script>
   export default {
-    data() {
-      return {
-        social: {
-          facebook: "https://www.facebook.com/CancerFIT.EBE",
-          instagram: "https://www.instagram.com/cancerfit/?hl=en",
-          twitter: "https://twitter.com/cancerfitinc",
-        },
-      }
+    async fetch() {
+      this.settings = await this.$api('Settings')
     },
+    data: () => ({
+      settings: {}
+    })
   }
 </script>

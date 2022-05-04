@@ -31,5 +31,10 @@
       about: {},
       founders: []
     }),
+    head() {
+      return {
+        title: 'About - CancerFIT'
+      }
+    }
   }
 </script>

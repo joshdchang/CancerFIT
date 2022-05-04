@@ -42,6 +42,11 @@
     data: () => ({
       articles: [],
       article: {}
-    })
+    }),
+    head() {
+      return {
+        title: this.article.title + ' - CancerFIT'
+      }
+    }
   }
 </script>

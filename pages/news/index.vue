@@ -4,7 +4,7 @@
       <TheCard>
         <WYSIWYG :content="news.title"></WYSIWYG>
         <div>
-          <ArticleItem v-for="item of articles" v-if="item.status === 'published' && item !== article" :article="item"></ArticleItem>
+          <ArticleItem v-for="item of articles" v-if="item.status === 'published'" :article="item"></ArticleItem>
         </div>
       </TheCard>
     </div>
@@ -19,6 +19,11 @@
     data: () => ({
       articles: [],
       news: {}
-    })
+    }),
+    head() {
+      return {
+        title: 'News - CancerFIT'
+      }
+    }
   }
 </script>

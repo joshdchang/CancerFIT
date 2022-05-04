@@ -55,6 +55,11 @@
           this.incorrect = true
         }
       }
+    },
+    head() {
+      return {
+        title: 'Resources - CancerFIT'
+      }
     }
   }
 </script>

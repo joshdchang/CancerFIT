@@ -96,6 +96,11 @@
           this.form.incorrect = true
         }
       }
+    },
+    head() {
+      return {
+        title: 'Contact - CancerFIT'
+      }
     }
   }
 </script>
