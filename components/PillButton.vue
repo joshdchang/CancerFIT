@@ -30,9 +30,11 @@
     border-color: #03a9f4;
     color: white;
     max-width: 100%;
+    text-align: center;
   }
 
   button:hover {
+    cursor: pointer;
     background: #0277bd;
   }
 
@@ -48,6 +50,6 @@
 </style>
 <script>
   export default {
-    props: ["theme", "to", "href", "w"],
+    props: ["theme", "to", "href", "w", "submit"],
   };
 </script>

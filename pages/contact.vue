@@ -3,13 +3,23 @@
     <div>
       <TheCard>
         <WYSIWYG :content="contact.title"></WYSIWYG>
-        <div>
-          <input class="mb-3 sm:mb-4" type="text" name="name" placeholder="Name">
-          <input class="mb-3 sm:mb-4" type="text" name="subject" placeholder="Subject">
-          <input class="mb-3 sm:mb-4" type="email" name="email" placeholder="Email">
-          <textarea class="h-48 sm:h-56 resize-none" placeholder="Message"></textarea>
+        <div v-if="!this.form.submitted">
+          <input v-model="form.name" class="mb-3 sm:mb-4" type="text" name="name" placeholder="Name">
+          <input v-model="form.subject" class="mb-3 sm:mb-4" type="text" name="subject" placeholder="Subject">
+          <input v-model="form.replyto" class="mb-3 sm:mb-4" type="email" name="replyto" placeholder="Email">
+          <textarea v-model="form.message" class="h-48 sm:h-56 resize-none" placeholder="Message" name="message"></textarea>
         </div>
-        <PillButton w="w-80">Send</PillButton>
+        <WYSIWYG v-if="this.form.incorrect && !this.form.submitted">
+          <p>Please complete all fields.</p>
+        </WYSIWYG>
+        <span @click="send()" v-if="!this.form.submitted">
+          <PillButton w="w-80">Send</PillButton>
+        </span>
+        <WYSIWYG v-if="this.form.submitted">
+          <p v-if="this.form.success">Success! We will get back to you shortly.</p>
+          <p v-else-if="this.form.failed">Message failed to send. Please try emailing us directly at {{ contact.forward_messages_to }}.</p>
+          <p v-else>Submitting...</p>
+        </WYSIWYG>
       </TheCard>
     </div>
     <div>
@@ -58,7 +68,34 @@
     },
     data: () => ({
       contact: {},
-      settings: {}
-    })
+      settings: {},
+      form: {
+        name: '',
+        subject: '',
+        replyto: '',
+        message: '',
+        submitted: false,
+        failed: false,
+        success: false,
+        incorrect: false
+      }
+    }),
+    methods: {
+      send() {
+        if (this.form.name && this.form.subject && this.form.replyto && this.form.replyto.match(/(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9]))\.){3}(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9])|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])/) && this.form.message) {
+          let url = 'https://script.google.com/macros/s/AKfycbxy_UE7lKhOXSBGz2q8jZ-yIcP2XLNSNB_7LD6Fb-LTBtlJtpwEBvLj6EJFsb85dvSh/exec'
+          this.form.submitted = true
+          fetch(`${url}?name=${this.form.name}&subject=${this.form.subject}&replyto=${this.form.replyto}&message=${this.form.message}`).then(res => res.text()).then(text => {
+            if (text === 'success') {
+              this.form.success = true
+            } else {
+              this.form.failed = true
+            }
+          })
+        } else {
+          this.form.incorrect = true
+        }
+      }
+    }
   }
 </script>
