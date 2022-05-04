@@ -3,6 +3,9 @@
 </template>
 <script>
     export default {
-        props: ["asset"]
+        props: ["asset"],
+        mounted() {
+            console.log(this.asset)
+        }
     }
 </script>

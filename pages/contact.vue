@@ -27,7 +27,7 @@
                   clip-rule="evenodd" />
               </svg>
             </a>
-            <a style="color: #C13584" :href="settings.facebook_link" v-if="settings.instagram" target="_blank" class="inline-block mr-4">
+            <a style="color: #C13584" :href="settings.instagram_link" v-if="settings.instagram" target="_blank" class="inline-block mr-4">
               <span class="sr-only">Instagram</span>
               <svg class="w-20 h-20" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                 <path
@@ -36,7 +36,7 @@
                   clip-rule="evenodd" />
               </svg>
             </a>
-            <a style="color: #1DA1F2" :href="settings.facebook_link" v-if="settings.twitter" target="_blank" class="inline-block">
+            <a style="color: #1DA1F2" :href="settings.twitter_link" v-if="settings.twitter" target="_blank" class="inline-block">
               <span class="sr-only">Twitter</span>
               <svg class="w-20 h-20" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                 <path

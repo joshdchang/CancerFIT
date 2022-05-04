@@ -43,6 +43,7 @@
   export default {
     async fetch() {
       this.home = await this.$api('Home')
+      console.log(this.home)
       this.classes = await this.$api('Classes')
       this.classes.sort(function (a, b) {
         return new Date(a.date_and_time) - new Date(b.date_and_time)
