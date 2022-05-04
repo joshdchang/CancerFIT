@@ -28,7 +28,7 @@
         <div class="sm:p-10 p-6 cf-card-content">
           <WYSIWYG :content="contact.social_title"></WYSIWYG>
           <div>
-            <a style="color: #4267B2" :href="settings.facebook_link" v-if="settings.facebook" target="_blank" class="inline-block mr-4">
+            <a style="color: #4267B2" :href="settings.facebook_link" v-if="settings.facebook" target="_blank" class="inline-block mr-2 sm:mr-3">
               <span class="sr-only">Facebook</span>
               <svg class="w-20 h-20" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                 <path
@@ -37,7 +37,7 @@
                   clip-rule="evenodd" />
               </svg>
             </a>
-            <a style="color: #C13584" :href="settings.instagram_link" v-if="settings.instagram" target="_blank" class="inline-block mr-4">
+            <a style="color: #C13584" :href="settings.instagram_link" v-if="settings.instagram" target="_blank" class="inline-block mr-2 sm:mr-3">
               <span class="sr-only">Instagram</span>
               <svg class="w-20 h-20" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                 <path
