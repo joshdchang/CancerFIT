@@ -22,7 +22,7 @@ export default ({ app }, inject) => {
         document.cookie = cName + "=" + cValue + "; " + expires + "; path=/";
     })
     inject('getCookie', (cName) => {
-        if (document) {
+        if (typeof document !== 'undefined') {
             const name = cName + "=";
             const cDecoded = decodeURIComponent(document.cookie); //to be careful
             const cArr = cDecoded.split('; ');
