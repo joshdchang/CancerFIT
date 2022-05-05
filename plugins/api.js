@@ -22,13 +22,17 @@ export default ({ app }, inject) => {
         document.cookie = cName + "=" + cValue + "; " + expires + "; path=/";
     })
     inject('getCookie', (cName) => {
-        const name = cName + "=";
-        const cDecoded = decodeURIComponent(document.cookie); //to be careful
-        const cArr = cDecoded.split('; ');
-        let res;
-        cArr.forEach(val => {
-            if (val.indexOf(name) === 0) res = val.substring(name.length);
-        })
-        return res;
+        if (document) {
+            const name = cName + "=";
+            const cDecoded = decodeURIComponent(document.cookie); //to be careful
+            const cArr = cDecoded.split('; ');
+            let res;
+            cArr.forEach(val => {
+                if (val.indexOf(name) === 0) res = val.substring(name.length);
+            })
+            return res;
+        } else {
+            return "";
+        }
     })
 }
