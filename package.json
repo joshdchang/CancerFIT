@@ -20,7 +20,7 @@
   },
   "devDependencies": {
     "@nuxtjs/tailwindcss": "^4.2.1",
-    "@tailwindcss/aspect-ratio": "^0.4.0",
+    "@tailwindcss/aspect-ratio": "^0.4.1",
     "postcss": "^8.4.4",
     "push-dir": "^0.4.1"
   }
