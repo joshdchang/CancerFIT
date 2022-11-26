@@ -4,7 +4,7 @@
       <TheCard>
         <WYSIWYG :content="resources.title"></WYSIWYG>
         <div v-for="video of videos">
-          <YoutubeVideo :src="video.youtube_link">{{ video.caption }}</YoutubeVideo>
+          <DriveVideo :src="video.drive_link">{{ video.caption }}</DriveVideo>
         </div>
       </TheCard>
     </div>
