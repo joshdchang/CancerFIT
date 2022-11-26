@@ -6,6 +6,9 @@
         <div>
           <ScheduleItem v-for="upcoming of classes.slice(0, schedule.classes)" :upcoming="upcoming"></ScheduleItem>
         </div>
+        <div v-if="classes.slice(0, schedule.classes).length === 0" class="text-2xl text-gray-500">
+          No upcoming classes posted yet.
+        </div>
       </TheCard>
     </div>
     <div>

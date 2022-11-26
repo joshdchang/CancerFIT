@@ -23,7 +23,10 @@
         <div>
           <ScheduleItem v-for="upcoming of classes.slice(0, home.classes)" :upcoming="upcoming"></ScheduleItem>
         </div>
-        <PillButton to="/schedule" w="w-80">See Full Schedule</PillButton>
+        <div v-if="classes.slice(0, home.classes).length === 0" class="text-xl text-gray-500">
+          No upcoming classes posted yet.
+        </div>
+        <PillButton to="/schedule" w="w-80" v-else>See Full Schedule</PillButton>
       </TheCard>
       <TheCard v-if="resources.password_protected && (!$getCookie('pw') || $getCookie('pw') !== resources.password)">
         <WYSIWYG>
